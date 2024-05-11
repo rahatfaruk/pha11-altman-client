@@ -30,7 +30,7 @@ function Navbar() {
         {/* nav-links */}
         <ul className={`md:flex flex-col flex-[100%] md:flex-initial md:flex-row gap-2 ${showLinks ? 'flex' : 'hidden'}`}>
           <li className="order-1 md:order-none px-1">
-            <button onClick={() => onClickThemeToggler(isDarkTheme)} className="border rounded-full p-1 text-2xl hover:scale-95 dark:text-white"> 
+            <button onClick={() => onClickThemeToggler(isDarkTheme)} className="rounded-full p-1 text-2xl hover:scale-95 dark:text-white"> 
               {isDarkTheme ? <MoonStarsFill/> : <SunFill/> }
             </button>
           </li>

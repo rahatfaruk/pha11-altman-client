@@ -1,7 +1,77 @@
+import { Facebook, Instagram, Linkedin } from "react-bootstrap-icons";
+import { maxContent } from "../App";
+
 function Footer() {
-  return (  
-    <footer>
-      footer
+  return (
+    <footer className="px-4 bg-gray-100 dark:bg-gray-800 dark:text-gray-100">
+      <div className={`${maxContent} flex flex-col justify-between py-10 mx-auto space-y-8 lg:flex-row lg:space-y-0`}>
+        <div className="lg:w-1/3">
+          <h2 className="flex gap-2 text-2xl font-semibold">
+            <img src="/logo.svg" className="text-cyan-600" alt="logo" />
+            <p>Alt<span className="text-cyan-600">Product</span></p>
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-2 text-sm gap-x-3 gap-y-8 lg:w-2/3 sm:grid-cols-4">
+          <div className="space-y-3">
+            <h3 className="tracking-wide uppercase dark:text-gray-100 font-semibold">Product</h3>
+            <ul className="space-y-1">
+              <li>
+                <a rel="noopener noreferrer" href="#">Features</a>
+              </li>
+              <li>
+                <a rel="noopener noreferrer" href="#">Integrations</a>
+              </li>
+              <li>
+                <a rel="noopener noreferrer" href="#">FAQ</a>
+              </li>
+            </ul>
+          </div>
+          <div className="space-y-3">
+            <h3 className="tracking-wide uppercase dark:text-gray-100 font-semibold">Company</h3>
+            <ul className="space-y-1">
+              <li>
+                <a rel="noopener noreferrer" href="#">Privacy</a>
+              </li>
+              <li>
+                <a rel="noopener noreferrer" href="#">Terms of Service</a>
+              </li>
+            </ul>
+          </div>
+          <div className="space-y-3">
+            <h3 className="uppercase dark:text-gray-100 font-semibold">Developers</h3>
+            <ul className="space-y-1">
+              <li>
+                <a rel="noopener noreferrer" href="#">Public API</a>
+              </li>
+              <li>
+                <a rel="noopener noreferrer" href="#">Documentation</a>
+              </li>
+              <li>
+                <a rel="noopener noreferrer" href="#">Guides</a>
+              </li>
+            </ul>
+          </div>
+          <div className="space-y-3">
+            <div className="uppercase dark:text-gray-100 font-semibold">Social media</div>
+            <div className="flex justify-start space-x-3">
+              <a href="#" className="inline-block text-blue-800 dark:text-blue-600 hover:opacity-80">
+                <Facebook className="size-9 p-1" />
+              </a>
+              <a href="#" className="inline-block text-sky-600 dark:text-sky-500 hover:opacity-80">
+                <Linkedin className="size-9 p-1" />
+              </a>
+              <a href="#" className="inline-block text-red-800 hover:opacity-80">
+                <Instagram className="size-9 p-1" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className={`${maxContent} py-6 space-y-2 text-sm text-center dark:text-gray-300 border-t`}>
+        <p>© 2024 AltProduct Co. All rights reserved.</p>
+        <p>Developed by <span className="font-bold">Rahat Faruk</span></p>
+      </div>
     </footer>
   );
 }
