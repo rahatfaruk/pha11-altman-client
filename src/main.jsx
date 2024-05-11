@@ -6,6 +6,7 @@ import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } 
 import Home from './pages/Home/index.jsx'
 import Login from './pages/Login.jsx'
 import Queries from './pages/Queries/index.jsx'
+import ThemeProvider from './context/ThemeProvider.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -18,5 +19,7 @@ const router = createBrowserRouter(
 )
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <RouterProvider router={router} />
+  <ThemeProvider>
+    <RouterProvider router={router} />
+  </ThemeProvider>
 )
