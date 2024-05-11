@@ -10,12 +10,14 @@ import Home from './pages/Home'
 import Login from './pages/Login.jsx'
 import Queries from './pages/Queries'
 import ErrorPage from './pages/ErrorPage.jsx'
+import Signup from './pages/Signup.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<App/>} errorElement={<ErrorPage/>}>
       <Route index element={<Home/>} />
       <Route path='/login' element={<Login/>} />
+      <Route path='/signup' element={<Signup/>} />
       <Route path='/queries' element={<Queries/>} />
     </Route>
   )

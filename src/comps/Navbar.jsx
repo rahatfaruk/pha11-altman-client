@@ -4,7 +4,7 @@ import { maxContent } from "../App";
 import { useContext, useState } from "react";
 import { ThemeContext } from "../context/ThemeProvider";
 
-const fakeUser = 'a' && {email: 'ali@mail.com', displayName: 'ali'}
+const fakeUser = '' && {email: 'ali@mail.com', displayName: 'ali'}
 
 function Navbar() {
   const [showLinks, setShowLinks] = useState(false)
@@ -17,8 +17,8 @@ function Navbar() {
   }
 
   return (  
-    <nav className="px-4 mb-6 dark:bg-gray-800 dark:text-white">
-      <div className={`${maxContent} py-4 border-b flex gap-6 justify-between flex-wrap items-center`}>
+    <nav className="px-4 border-b dark:border-gray-500 dark:bg-gray-800 dark:text-white shadow-md">
+      <div className={`${maxContent} py-4 flex gap-6 justify-between flex-wrap items-center`}>
         {/* logo + sitename */}
         <h2 className="flex gap-2 text-xl font-semibold">
           <img src="/logo.svg" className="text-cyan-600" alt="logo" /> 
@@ -29,7 +29,7 @@ function Navbar() {
 
         {/* nav-links */}
         <ul className={`md:flex flex-col flex-[100%] md:flex-initial md:flex-row gap-2 ${showLinks ? 'flex' : 'hidden'}`}>
-          <li className="order-1 md:order-none px-1">
+          <li className="order-1 md:order-none px-1 mt-3 md:mt-0">
             <button onClick={() => onClickThemeToggler(isDarkTheme)} className="rounded-full p-1 text-2xl hover:scale-95 dark:text-white"> 
               {isDarkTheme ? <MoonStarsFill/> : <SunFill/> }
             </button>
