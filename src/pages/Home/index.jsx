@@ -1,6 +1,10 @@
+import Banner from "./Slider";
+
 function Home() {
   return (  
-    <div>home</div>
+    <div>
+      <Banner />
+    </div>
   );
 }
 

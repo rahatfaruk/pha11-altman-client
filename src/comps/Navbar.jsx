@@ -68,7 +68,7 @@ function Navbar() {
                 <button onClick={handleLogout} className="bg-red-800 text-white px-2.5 py-1 rounded-md inline-block hover:opacity-85 capitalize">Logout</button>
               </li>
               <li>
-                <figure className="p-0.5 md:border border-cyan-600 rounded-full">
+                <figure className="p-0.5 inline-block border border-cyan-600 rounded-full">
                   <img src={user.photoURL} className="size-7 rounded-full" alt={user.displayName} data-tooltip-id="userImg" data-tooltip-content={`${user.displayName} -- ${user.email}`} />
                   <Tooltip id="userImg" />
                 </figure>
