@@ -1,6 +1,7 @@
 import Banner from "./Banner";
 import Features from "./Features";
 import RecentQueries from "./RecentQueries";
+import Reviews from "./Reviews";
 import Slider from "./Slider";
 
 function Home() {
@@ -10,6 +11,7 @@ function Home() {
       <Banner />
       <RecentQueries />
       <Features />
+      <Reviews />
     </div>
   );
 }

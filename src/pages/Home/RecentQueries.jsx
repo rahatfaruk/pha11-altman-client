@@ -1,12 +1,11 @@
 import { maxContent } from "../../App";
+import SectionTitle from "../../comps/SectionTitle";
 
 function RecentQueries() {
   return (
     <section class="px-4 dark:bg-gray-800">
       <div class={`${maxContent} py-10`}>
-        <h2 className="mb-6 text-2xl md:text-3xl font-semibold text-center dark:text-gray-200">
-          <span className="border-t-2 border-cyan-600">Recent Queries</span>
-        </h2>
+        <SectionTitle title={'Recent Queries'} />
 
         <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           <QueryCard />

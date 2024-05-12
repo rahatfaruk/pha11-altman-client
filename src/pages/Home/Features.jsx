@@ -1,5 +1,6 @@
 import { Alt, People, Share } from "react-bootstrap-icons";
 import { maxContent } from "../../App";
+import SectionTitle from "../../comps/SectionTitle";
 
 const whyUsList = [
   {id:'1', icon: <Alt/>, title: 'Find Your Alternative Product easity', desc: 'This website will make your life easier. Just post your product query with details. Someone might suggest you something alternative.'},
@@ -13,9 +14,7 @@ function Features() {
       <div className={`${maxContent} px-6 py-10`}>
         <div className="lg:flex lg:items-center">
           <div className="w-full space-y-10 lg:w-1/2 ">
-            <h2 className="mb-4 text-2xl md:text-3xl font-semibold text-center dark:text-gray-200">
-              <span className="border-t-2 border-cyan-600">Why choose Us</span>
-            </h2>
+            <SectionTitle title={'Why choose Us'} />
 
             {whyUsList.map(item => (
               <div key={item.id} className="border p-4 rounded-md md:flex md:items-start md:-mx-4">
