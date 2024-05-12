@@ -2,9 +2,9 @@ import { maxContent } from "../../App";
 
 function RecentQueries() {
   return (
-    <section class="px-4 dark:bg-gray-900">
-      <div class={`${maxContent} py-10 mx-auto`}>
-        <h2 className="mb-6 text-2xl md:text-3xl font-semibold text-center">
+    <section class="px-4 dark:bg-gray-800">
+      <div class={`${maxContent} py-10`}>
+        <h2 className="mb-6 text-2xl md:text-3xl font-semibold text-center dark:text-gray-200">
           <span className="border-t-2 border-cyan-600">Recent Queries</span>
         </h2>
 

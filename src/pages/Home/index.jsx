@@ -1,4 +1,5 @@
 import Banner from "./Banner";
+import Features from "./Features";
 import RecentQueries from "./RecentQueries";
 import Slider from "./Slider";
 
@@ -8,6 +9,7 @@ function Home() {
       <Slider />
       <Banner />
       <RecentQueries />
+      <Features />
     </div>
   );
 }
