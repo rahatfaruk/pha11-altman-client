@@ -1,4 +1,5 @@
 import Banner from "./Banner";
+import RecentQueries from "./RecentQueries";
 import Slider from "./Slider";
 
 function Home() {
@@ -6,6 +7,7 @@ function Home() {
     <div>
       <Slider />
       <Banner />
+      <RecentQueries />
     </div>
   );
 }
