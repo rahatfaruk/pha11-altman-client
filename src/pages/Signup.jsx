@@ -1,12 +1,16 @@
 import { useState } from "react"
 import { toast } from "react-toastify"
 import { Eye, EyeSlash } from "react-bootstrap-icons"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import useAuth from "../hooks/useAuth"
+import { updateProfile } from "firebase/auth"
 
 function Signup() {
   const [showPassword, setShowPassword] = useState(false)
+  const {createUserWithEP} = useAuth()
+  const navigate = useNavigate()
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault()
     
     const name = e.target.name.value.trim()
@@ -27,7 +31,16 @@ function Signup() {
     // validated: now submit form
     else {
       // TODO: call sign up here
-      console.log(name, photo, email, password);
+      try {
+        const credential = await createUserWithEP(email, password);
+        // update name, photoUrl
+        await updateProfile(credential.user, {displayName:name, photoURL:photo})
+        toast.success('successfully created account!')
+        navigate('/')
+      } catch (error) {
+        console.log('creating account failed!', error.message);
+        toast.error('creating account failed! ' + error.message);
+      }
     }
   }
 

@@ -11,6 +11,7 @@ import Login from './pages/Login.jsx'
 import Queries from './pages/Queries'
 import ErrorPage from './pages/ErrorPage.jsx'
 import Signup from './pages/Signup.jsx'
+import AuthProvider from './context/AuthProvider.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -24,7 +25,9 @@ const router = createBrowserRouter(
 )
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <ThemeProvider>
-    <RouterProvider router={router} />
-  </ThemeProvider>
+  <AuthProvider>
+    <ThemeProvider>
+      <RouterProvider router={router} />
+    </ThemeProvider>
+  </AuthProvider>
 )

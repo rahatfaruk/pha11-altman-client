@@ -1,12 +1,16 @@
 import { useState } from "react"
 import { toast } from "react-toastify"
 import { Eye, EyeSlash, Google } from "react-bootstrap-icons"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import useAuth from "../hooks/useAuth"
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false)
+  const {user, signInWithEP} = useAuth()
+  const navigate = useNavigate()
+  console.log('login p:',user);
 
-  const handleSubmit = e => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     
     const email = e.target.email.value.trim()
@@ -25,7 +29,14 @@ function Login() {
     // successful: sign in
     else {
       // TODO: call sign in here
-      console.log(email, password);
+      try {
+        await signInWithEP(email, password);
+        toast.success('successfully signed in!')
+        navigate('/')
+      } catch (error) {
+        console.log('signin failed!', error.message);
+        toast.error('signin failed! ' + error.message);
+      }
     }
   }
 

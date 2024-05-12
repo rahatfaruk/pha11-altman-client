@@ -1,19 +1,31 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { List, MoonStarsFill, SunFill } from "react-bootstrap-icons";
 import { maxContent } from "../App";
 import { useContext, useState } from "react";
 import { ThemeContext } from "../context/ThemeProvider";
-
-const fakeUser = '' && {email: 'ali@mail.com', displayName: 'ali'}
+import useAuth from "../hooks/useAuth";
+import { toast } from "react-toastify";
 
 function Navbar() {
   const [showLinks, setShowLinks] = useState(false)
   const {isDarkTheme, onClickThemeToggler} = useContext(ThemeContext)
-  const user = fakeUser 
+  const {user, logout} = useAuth() 
+  const navigate = useNavigate()
 
   const navlinkClass = ({isActive}) => {
     return `px-2.5 py-1 rounded-md inline-block hover:underline hover:opacity-85 capitalize
     ${isActive ? 'bg-cyan-600 text-white' : ''}`
+  }
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      toast.info('successfully logged out!')
+      navigate('/login')
+    } catch (error) {
+      console.log('logout failed!', error.message);
+      toast.error('logout failed! ' + error.message);
+    }
   }
 
   return (  
@@ -52,7 +64,7 @@ function Navbar() {
                 <NavLink to='/my-recommendations' className={navlinkClass}>My Recommendations</NavLink>
               </li>
               <li>
-                <button className="bg-red-800 text-white px-2.5 py-1 rounded-md inline-block hover:opacity-85 capitalize">Logout</button>
+                <button onClick={handleLogout} className="bg-red-800 text-white px-2.5 py-1 rounded-md inline-block hover:opacity-85 capitalize">Logout</button>
               </li>
             </> :
             <>
