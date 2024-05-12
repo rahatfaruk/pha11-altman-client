@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { auth } from "../../firebaseConfig";
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import Loading from "../comps/Loading";
 
 export const AuthContext = createContext()
 
@@ -37,6 +38,9 @@ function AuthProvider({children}) {
     return unsub
   }, [])
 
+  if (loading) {
+    return <Loading />
+  }
   return (  
     <AuthContext.Provider value={
       {user, setUser, createUserWithEP, signInWithEP, logout, loading}
