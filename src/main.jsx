@@ -4,6 +4,7 @@ import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } 
 // context, css
 import ThemeProvider from './context/ThemeProvider.jsx'
 import './index.css'
+import 'react-tooltip/dist/react-tooltip.css'
 // pages, components
 import App from './App.jsx'
 import Home from './pages/Home'

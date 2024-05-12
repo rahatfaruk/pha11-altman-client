@@ -30,9 +30,9 @@ function AuthProvider({children}) {
   // check login status onload website
   useEffect(() => {
     // TODO: TESTUSER ONLY FOR DEVELOPMENT >> 
-    // const fakeUser = 'a' && {email: 'ali2@mail.com', displayName: 'ali'}
-    // setTimeout(() => {setUser(fakeUser); setLoading(false); }, 1000)
-    // return 
+    const fakeUser = 'a' && {email: 'ali2@mail.com', displayName: 'ali', photoURL: 'https://dummyimage.com/100/000/fff&text=a'}
+    setTimeout(() => {setUser(fakeUser); setLoading(false); }, 1000)
+    return 
 
     const unsub = onAuthStateChanged(auth, currUser => {
       setUser(currUser)
