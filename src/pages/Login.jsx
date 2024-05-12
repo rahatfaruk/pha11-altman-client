@@ -6,7 +6,7 @@ import useAuth from "../hooks/useAuth"
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false)
-  const {user, signInWithEP} = useAuth()
+  const {user, signInWithEP, signInWithGoogle} = useAuth()
   const navigate = useNavigate()
   console.log('login p:',user);
 
@@ -40,6 +40,18 @@ function Login() {
     }
   }
 
+  // sign with google
+  const handleSignWithGoogle = async () => {
+    try {
+      await signInWithGoogle();
+      toast.success('successfully signed in!')
+      navigate('/')
+    } catch (error) {
+      console.log('signin failed!', error.message);
+      toast.error('signin failed! ' + error.message);
+    }
+  }
+
   return (  
     <section className="px-4 md:px-6 py-8 md:py-12 dark:bg-gray-800 dark:text-gray-200">
       <div className="max-w-md mx-auto p-6 md:p-8 border rounded-md shadow-md">
@@ -52,7 +64,7 @@ function Login() {
             <Link to="/signup" className="text-cyan-600 hover:underline dark:text-cyan-400.">Sign up here</Link>
           </p>
           <div className="pt-4 space-y-4">
-            <button className="bg-blue-600 text-white w-full px-4 py-2 rounded-md flex items-center justify-center gap-3 hover:opacity-90"><Google/> Continue with Google</button>
+            <button onClick={handleSignWithGoogle} className="bg-blue-600 text-white w-full px-4 py-2 rounded-md flex items-center justify-center gap-3 hover:opacity-90"><Google/> Continue with Google</button>
           </div>
         </div>
 

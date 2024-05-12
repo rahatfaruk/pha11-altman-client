@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { auth } from "../../firebaseConfig";
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import Loading from "../comps/Loading";
 
 export const AuthContext = createContext()
@@ -17,6 +17,11 @@ function AuthProvider({children}) {
   const signInWithEP = (email, pass) => {
     return signInWithEmailAndPassword(auth, email, pass)
   }
+  // google login
+  const signInWithGoogle = () => {
+    const provider = new GoogleAuthProvider()
+    return signInWithPopup(auth, provider)
+  }
   // signout
   const logout = () => {
     return signOut(auth)
@@ -25,8 +30,8 @@ function AuthProvider({children}) {
   // check login status onload website
   useEffect(() => {
     // TODO: TESTUSER ONLY FOR DEVELOPMENT >> 
-    // const fakeUser = 'a' && {email: 'ali@mail.com', displayName: 'ali'}
-    // setUser(fakeUser); setLoading(false); 
+    // const fakeUser = 'a' && {email: 'ali2@mail.com', displayName: 'ali'}
+    // setTimeout(() => {setUser(fakeUser); setLoading(false); }, 1000)
     // return 
 
     const unsub = onAuthStateChanged(auth, currUser => {
@@ -43,7 +48,7 @@ function AuthProvider({children}) {
   }
   return (  
     <AuthContext.Provider value={
-      {user, setUser, createUserWithEP, signInWithEP, logout, loading}
+      {user, setUser, createUserWithEP, signInWithEP, signInWithGoogle, logout, loading}
     }>
       {children}
     </AuthContext.Provider>
