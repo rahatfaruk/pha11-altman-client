@@ -6,7 +6,7 @@ import 'swiper/css/pagination'
 import 'swiper/css/autoplay'
 import { maxContent } from '../../App';
 
-function Banner() {
+function Slider() {
   const slidesData = [
     {id:'1', image: 'https://i.postimg.cc/5tf6Ftmr/questions.jpg', title: 'Find your alternative product'},
     {id:'2', image: 'https://i.postimg.cc/YC6v9FQg/boxes-3.jpg', title: 'Get recommendation from others'},
@@ -44,4 +44,4 @@ function Banner() {
   );
 }
 
-export default Banner;
+export default Slider;

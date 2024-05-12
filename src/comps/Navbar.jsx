@@ -51,7 +51,7 @@ function Navbar() {
             <NavLink to='/' className={navlinkClass}>Home</NavLink>
           </li>
           <li>
-            <NavLink to='/queries' className={navlinkClass}>Queries</NavLink>
+            <NavLink to='/all-queries' className={navlinkClass}>Queries</NavLink>
           </li>
           {user ? 
             <>
