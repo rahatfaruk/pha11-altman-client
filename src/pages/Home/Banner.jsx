@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 
 function Banner() {
   return (
-    <section class="bg-gray-100 dark:bg-gray-900">
-      <div class={`max-w-lg flex flex-col items-center gap-4 px-4 py-6 mx-auto text-center`}>
-        <h2 class="text-2xl font-semibold tracking-tight text-gray-800 md:text-3xl dark:text-white">
+    <section className="bg-gray-100 dark:bg-gray-900">
+      <div className={`max-w-lg flex flex-col items-center gap-4 px-4 py-6 mx-auto text-center`}>
+        <h2 className="text-2xl font-semibold tracking-tight text-gray-800 md:text-3xl dark:text-white">
           Want to explore <span className="text-cyan-600">all queries?</span>
         </h2>
-        <p class="max-w-4xl text-center text-gray-500 dark:text-gray-300">
+        <p className="max-w-4xl text-center text-gray-500 dark:text-gray-300">
           Explore everyone's query. Help others by suggesting their product alternatives. You can also comment on others suggested products.  
         </p>
         <div>

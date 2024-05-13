@@ -8,28 +8,28 @@ const reviews = [
 
 function Reviews() {
   return (
-    <div class="overflow-hidden dark:bg-gray-800">
-      <div class="relative max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+    <div className="overflow-hidden dark:bg-gray-800">
+      <div className="relative max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
         <SectionTitle title={'User Reviews'} />
 
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {reviews.map(({id, review, userName, userImg, userPosition}) => (
-            <div key={id} class="flex h-auto">
-              <div class="flex flex-col border shadow-md bg-white rounded-xl dark:bg-cyan-900">
-                <div class="flex-auto p-4 md:p-6">
-                  <p class="text-base italic md:text-lg text-gray-800 dark:text-neutral-200">
+            <div key={id} className="flex h-auto">
+              <div className="flex flex-col border shadow-md bg-white rounded-xl dark:bg-cyan-900">
+                <div className="flex-auto p-4 md:p-6">
+                  <p className="text-base italic md:text-lg text-gray-800 dark:text-neutral-200">
                     " {review} "
                   </p>
                 </div>
 
-                <div class="p-4 bg-gray-100 rounded-b-xl md:px-7 dark:bg-cyan-800">
-                  <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                      <img class="size-8 sm:h-[2.875rem] sm:w-[2.875rem] rounded-full" src={userImg} />
+                <div className="p-4 bg-gray-100 rounded-b-xl md:px-7 dark:bg-cyan-800">
+                  <div className="flex items-center">
+                    <div className="flex-shrink-0">
+                      <img className="size-8 sm:h-[2.875rem] sm:w-[2.875rem] rounded-full" src={userImg} />
                     </div>
-                    <div class="grow ms-3">
-                      <p class="text-sm sm:text-base font-semibold text-gray-800 dark:text-neutral-200">{userName}</p>
-                      <p class="text-xs text-gray-500 dark:text-neutral-400">{userPosition}</p>
+                    <div className="grow ms-3">
+                      <p className="text-sm sm:text-base font-semibold text-gray-800 dark:text-neutral-200">{userName}</p>
+                      <p className="text-xs text-gray-500 dark:text-neutral-400">{userPosition}</p>
                     </div>
                   </div>
                 </div>

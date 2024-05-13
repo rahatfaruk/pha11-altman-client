@@ -1,0 +1,90 @@
+import { useEffect, useState } from "react";
+import { maxContent } from "../../App";
+import SectionTitle from "../../comps/SectionTitle";
+import axios from "axios";
+import { toast } from "react-toastify";
+import Loading from "../../comps/Loading";
+import { Link } from "react-router-dom";
+
+function MyQueryList() {
+  const [myQueries, setMyQueries] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    axios('/data.json')
+    .then(res => {
+      setMyQueries(res.data)
+      setLoading(false)
+      console.log(res.data);
+    })
+    .catch(err => {
+      setLoading(false)
+      toast.error('fetching queries failed!' + err.message)
+    })
+  }, [])
+
+  if (loading) {
+    return <Loading />
+  }
+  return (
+    <section className="px-4 dark:bg-gray-800">
+      <div className={`${maxContent} py-10`}>
+        <SectionTitle title={'My Queries'} />
+
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {myQueries.map((query) => <QueryCard key={query._id} query={query} />)}
+          
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default MyQueryList;
+
+
+function QueryCard({query}) {
+  const {productName, productBrand, productImageUrl, queryTitle, alterationReason, userName, userPhotoUrl, postedTimestamp, recommendationCount} = query
+
+  return (
+    <div className="border rounded-md">
+      {/* user info, time */}
+      <div className="flex items-center justify-between p-3">
+        <div className="flex items-center space-x-2">
+          <figure className="p-0.5 inline-block border border-cyan-600 rounded-full">
+            <img src={userPhotoUrl} className="size-7 rounded-full" alt='' />
+          </figure>
+          <div className="-space-y-1">
+            <h2 className="text-sm font-semibold leading-none dark:text-gray-200">{userName}</h2>
+            <span className="inline-block text-xs leading-none dark:text-gray-400">posted: {postedTimestamp}</span>
+          </div>
+        </div>
+      </div>
+
+      <img className="object-cover object-bottom w-full h-64 lg:h-80" src={productImageUrl} alt="" />
+
+      {/* query, product info */}
+      <div className="p-4">
+        <h4 className="text-cyan-600 rounded-md mb-2">Query: {queryTitle}</h4>
+        <h3 className="mb-1 text-xl font-semibold text-gray-800 dark:text-white">{productName}</h3>
+        <p className="mb-1 text-gray-500 dark:text-gray-400">Brand: {productBrand}</p>
+        <p className="mb-1 text-gray-500 dark:text-gray-400">Alteration reason: {alterationReason}</p>
+        <p className="mb-1 text-gray-500 dark:text-gray-400">Recommendation: {recommendationCount}</p>
+
+        <ul className="flex gap-4 mt-4">
+          <li>
+            <Link to={'/query-detials'} className="bg-cyan-600 text-white px-2.5 py-1 rounded-md inline-block hover:opacity-85 capitalize" >View Details</Link>
+          </li>
+          <li>
+            <Link to={'/update-query'} className="bg-cyan-600 text-white px-2.5 py-1 rounded-md inline-block hover:opacity-85 capitalize" >Update</Link>
+          </li>
+          <li>
+            <button className="bg-red-800 text-white px-2.5 py-1 rounded-md inline-block hover:opacity-85 capitalize">Delete</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+export { QueryCard };

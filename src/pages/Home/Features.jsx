@@ -1,9 +1,9 @@
-import { Alt, People, Share } from "react-bootstrap-icons";
+import { People, Search, Share } from "react-bootstrap-icons";
 import { maxContent } from "../../App";
 import SectionTitle from "../../comps/SectionTitle";
 
 const whyUsList = [
-  {id:'1', icon: <Alt/>, title: 'Find Your Alternative Product easity', desc: 'This website will make your life easier. Just post your product query with details. Someone might suggest you something alternative.'},
+  {id:'1', icon: <Search/>, title: 'Find Your Alternative Product easily', desc: 'This website will make your life easier. Just post your product query with details. Someone might suggest you something alternative.'},
   {id:'2', icon: <Share/>, title: 'Share your knowledge with others', desc: 'You can share your knowledge about a product by suggesting alternatives to others. You can also comment if any product is not good.'},
   {id:'3', icon: <People/>, title: 'Bigger community', desc: 'There are more than 2000+ member active in this website. So, it is highly possible that you will find your alternative product.'},
 ]
