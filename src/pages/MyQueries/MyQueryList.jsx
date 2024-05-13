@@ -15,7 +15,6 @@ function MyQueryList() {
     .then(res => {
       setMyQueries(res.data)
       setLoading(false)
-      console.log(res.data);
     })
     .catch(err => {
       setLoading(false)
@@ -32,7 +31,16 @@ function MyQueryList() {
         <SectionTitle title={'My Queries'} />
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {myQueries.map((query) => <QueryCard key={query._id} query={query} />)}
+          {
+            myQueries.length === 0 ? 
+            (
+              <div className="text-center space-y-4 md:col-span-2 lg:col-span-3">
+                <p className="text-center text-xl text-gray-500">Your query list is empty</p>
+                <Link to={'/add-query'} className="inline-flex items-center gap-1 px-4 py-2 rounded-md bg-cyan-600 text-white font-semibold hover:opacity-85 capitalize">Add New Query </Link>
+              </div>
+            ) :
+            myQueries.map((query) => <QueryCard key={query._id} query={query} />)
+          }
           
         </div>
       </div>
@@ -44,10 +52,10 @@ export default MyQueryList;
 
 
 function QueryCard({query}) {
-  const {productName, productBrand, productImageUrl, queryTitle, alterationReason, userName, userPhotoUrl, postedTimestamp, recommendationCount} = query
+  const {productName, productBrand, productImageUrl, queryTitle, alternationReason, userName, userPhotoUrl, postedTimestamp, recommendationCount} = query
 
   return (
-    <div className="border rounded-md">
+    <div className="border rounded-md shadow-md">
       {/* user info, time */}
       <div className="flex items-center justify-between p-3">
         <div className="flex items-center space-x-2">
@@ -68,7 +76,7 @@ function QueryCard({query}) {
         <h4 className="text-cyan-600 rounded-md mb-2">Query: {queryTitle}</h4>
         <h3 className="mb-1 text-xl font-semibold text-gray-800 dark:text-white">{productName}</h3>
         <p className="mb-1 text-gray-500 dark:text-gray-400">Brand: {productBrand}</p>
-        <p className="mb-1 text-gray-500 dark:text-gray-400">Alteration reason: {alterationReason}</p>
+        <p className="mb-1 text-gray-500 dark:text-gray-400">Alteration reason: {alternationReason}</p>
         <p className="mb-1 text-gray-500 dark:text-gray-400">Recommendation: {recommendationCount}</p>
 
         <ul className="flex gap-4 mt-4">

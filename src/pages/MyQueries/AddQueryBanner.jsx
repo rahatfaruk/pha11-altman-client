@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function AddQueryBanner() {
   return (
-    <section className="bg-gray-50 dark:bg-gray-900">
+    <section className="bg-gray-200 dark:bg-gray-900">
       <div className={`max-w-lg flex flex-col items-center gap-4 px-4 py-12 md:py-16 mx-auto text-center`}>
         <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-800 dark:text-white">
           Add New <span className="text-cyan-600">Query</span>
