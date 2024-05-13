@@ -1,13 +1,14 @@
 import { useState } from "react"
 import { toast } from "react-toastify"
 import { Eye, EyeSlash, Google } from "react-bootstrap-icons"
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import useAuth from "../hooks/useAuth"
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false)
   const {user, signInWithEP, signInWithGoogle} = useAuth()
   const navigate = useNavigate()
+  const location = useLocation()
   console.log('login p:',user);
 
   const handleSubmit = async (e) => {
@@ -32,7 +33,7 @@ function Login() {
       try {
         await signInWithEP(email, password);
         toast.success('successfully signed in!')
-        navigate('/')
+        navigate(location.state || '/')
       } catch (error) {
         console.log('signin failed!', error.message);
         toast.error('signin failed! ' + error.message);

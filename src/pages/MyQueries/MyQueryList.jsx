@@ -53,6 +53,7 @@ export default MyQueryList;
 
 function QueryCard({query}) {
   const {productName, productBrand, productImageUrl, queryTitle, alternationReason, userName, userPhotoUrl, postedTimestamp, recommendationCount} = query
+  const formattedTime = new Date(+postedTimestamp).toLocaleString()
 
   return (
     <div className="border rounded-md shadow-md">
@@ -64,7 +65,7 @@ function QueryCard({query}) {
           </figure>
           <div className="-space-y-1">
             <h2 className="text-sm font-semibold leading-none dark:text-gray-200">{userName}</h2>
-            <span className="inline-block text-xs leading-none dark:text-gray-400">posted: {postedTimestamp}</span>
+            <span className="inline-block text-xs leading-none dark:text-gray-400">posted: {formattedTime}</span>
           </div>
         </div>
       </div>

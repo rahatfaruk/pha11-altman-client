@@ -16,6 +16,7 @@ import ErrorPage from './pages/ErrorPage.jsx'
 import Signup from './pages/Signup.jsx'
 import MyQueries from './pages/MyQueries'
 import AddQuery from './pages/AddQuery'
+import RouteGuard from './comps/RouteGuard.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -24,8 +25,8 @@ const router = createBrowserRouter(
       <Route path='/login' element={<Login/>} />
       <Route path='/signup' element={<Signup/>} />
       <Route path='/all-queries' element={<Queries/>} />
-      <Route path='/my-queries' element={<MyQueries/>} />
-      <Route path='/add-query' element={<AddQuery/>} />
+      <Route path='/my-queries' element={<RouteGuard> <MyQueries/> </RouteGuard>} />
+      <Route path='/add-query' element={<RouteGuard> <AddQuery/> </RouteGuard>} />
     </Route>
   )
 )
