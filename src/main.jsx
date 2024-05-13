@@ -18,7 +18,8 @@ import MyQueries from './pages/MyQueries'
 import AddQuery from './pages/AddQuery'
 import RouteGuard from './comps/RouteGuard.jsx'
 import QueryDetails from './pages/QueryDetails'
-import MyRecommendations from './pages/MyRecommendations/index.jsx'
+import MyRecommendations from './pages/MyRecommendations'
+import RecommendationsForMe from './pages/RecommendationsForMe'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -31,6 +32,7 @@ const router = createBrowserRouter(
       <Route path='add-query' element={<RouteGuard> <AddQuery/> </RouteGuard>} />
       <Route path='query-details/:id' element={<RouteGuard> <QueryDetails/> </RouteGuard>} />
       <Route path='my-recommendations' element={<RouteGuard> <MyRecommendations/> </RouteGuard>} />
+      <Route path='recommendations-for-me' element={<RouteGuard> <RecommendationsForMe/> </RouteGuard>} />
     </Route>
   )
 )
