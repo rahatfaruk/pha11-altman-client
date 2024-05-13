@@ -3,7 +3,7 @@ import { maxContent } from "../App";
 
 function Footer() {
   return (
-    <footer className="flex-1 px-4 bg-gray-100 dark:bg-gray-700 dark:text-gray-100 border-t dark:border-gray-500">
+    <footer className="px-4 bg-gray-100 dark:bg-gray-700 dark:text-gray-100 border-t dark:border-gray-500">
       <div className={`${maxContent} flex flex-col justify-between py-10 mx-auto space-y-8 lg:flex-row lg:space-y-0`}>
         <div className="lg:w-1/3">
           <h2 className="flex gap-2 text-2xl font-semibold">

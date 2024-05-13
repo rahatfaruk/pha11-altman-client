@@ -52,7 +52,7 @@ export default MyQueryList;
 
 
 function QueryCard({query}) {
-  const {productName, productBrand, productImageUrl, queryTitle, alternationReason, userName, userPhotoUrl, postedTimestamp, recommendationCount} = query
+  const {_id, productName, productBrand, productImageUrl, queryTitle, alternationReason, userName, userPhotoUrl, postedTimestamp, recommendationCount} = query
   const formattedTime = new Date(+postedTimestamp).toLocaleString()
 
   return (
@@ -82,7 +82,7 @@ function QueryCard({query}) {
 
         <ul className="flex gap-4 mt-4">
           <li>
-            <Link to={'/query-detials'} className="bg-cyan-600 text-white px-2.5 py-1 rounded-md inline-block hover:opacity-85 capitalize" >View Details</Link>
+            <Link to={`/query-details/${_id}`} className="bg-cyan-600 text-white px-2.5 py-1 rounded-md inline-block hover:opacity-85 capitalize" >View Details</Link>
           </li>
           <li>
             <Link to={'/update-query'} className="bg-cyan-600 text-white px-2.5 py-1 rounded-md inline-block hover:opacity-85 capitalize" >Update</Link>

@@ -12,7 +12,7 @@ function App() {
   console.log('currUser(App):', user);
   return (  
     <>
-      <div className="flex flex-col">
+      <div className="flex flex-col min-h-screen">
         <Navbar />
         <Outlet />
         <Footer />
