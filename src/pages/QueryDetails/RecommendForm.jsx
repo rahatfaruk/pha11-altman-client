@@ -1,8 +1,11 @@
+import { toast } from "react-toastify";
 import SectionTitle from "../../comps/SectionTitle";
 import useAuth from "../../hooks/useAuth";
+import useAxios from "../../hooks/useAxios";
 
-function RecommendForm({query}) {
+function RecommendForm({query, incRecCount, addComment}) {
   const {user} = useAuth()
+  const {axiosBase} = useAxios()
 
   const handleSubmit = async e => {
     e.preventDefault()
@@ -13,21 +16,30 @@ function RecommendForm({query}) {
       recommendReason:e.target.recommendReason.value
     }
 
-    const newRecommandation = {
+    const newRecommendation = {
       ...formData,
       recommenderName: user.displayName,
       recommenderEmail: user.email,
       recommenderPhotoUrl: user.photoURL,
       postedTimestamp: new Date().getTime(),
-      _id: query._id,
+      queryId: query._id,
       queryTitle: query.queryTitle,
       productName: query.productName,
       userName: query.userName,
       userEmail: query.userEmail,
     }
 
-    // TODO: post newQuery into db
-    console.log('nq', newRecommandation);
+    // post newQuery into db
+    axiosBase.post('/add-recommendation', newRecommendation)
+    .then(res => {
+      toast.success('recommendation added successfully')
+      e.target.reset()
+      // inc recommend count
+      incRecCount()
+      // add this comment into ui
+      addComment({...newRecommendation, _id: res.data.insertedId})
+    })
+    .catch(err => toast.error('faile to add recommendation: ', err.message))
   }
 
   return (  

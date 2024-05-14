@@ -17,7 +17,6 @@ function MyQueryList() {
   useEffect(() => {
     axiosBase(`/my-queries?userEmail=${user.email}`)
     .then(res => {
-      console.log('my-queries:', res.data);
       setMyQueries(res.data)
       setLoading(false)
     })

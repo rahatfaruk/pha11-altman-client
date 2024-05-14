@@ -1,16 +1,4 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-
-function Comments() {
-  const [comments, setComments] = useState([])
-
-  useEffect(() => {
-    axios('/data2.json')
-    .then(res => {
-      setComments(res.data)
-    })
-  })
-
+function Comments({comments}) {
   return (  
     <div className="mt-12 max-w-2xl mx-auto">
       <h3 className="mb-4 text-xl">Comments</h3>
@@ -23,7 +11,7 @@ export default Comments;
 
 
 function Comment({comment}) {
-  const {_id,postedTimestamp,productName,queryTitle,recommendProductImageUrl,recommendProductName,recommendReason,recommendTitle,recommenderEmail,recommenderName,recommenderPhotoUrl,userEmail,userName} = comment
+  const {postedTimestamp,recommendProductImageUrl,recommendProductName,recommendReason,recommendTitle,recommenderEmail,recommenderName,recommenderPhotoUrl} = comment
   const formattedTime = new Date(+postedTimestamp).toLocaleString()
 
   return (  
