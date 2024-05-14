@@ -29,7 +29,7 @@ function RecommendForm({query, incRecCount, addComment}) {
       userEmail: query.userEmail,
     }
 
-    // post newQuery into db
+    // post new recommendation into db
     axiosBase.post('/add-recommendation', newRecommendation)
     .then(res => {
       toast.success('recommendation added successfully')

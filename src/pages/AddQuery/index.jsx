@@ -1,8 +1,11 @@
+import { toast } from "react-toastify";
 import { maxContent } from "../../App";
 import useAuth from "../../hooks/useAuth";
+import useAxios from "../../hooks/useAxios";
 
 function AddQuery() {
   const {user} = useAuth()
+  const {axiosBase} = useAxios()
 
   const handleSubmit = async e => {
     e.preventDefault()
@@ -23,8 +26,13 @@ function AddQuery() {
       recommendationCount: 0
     }
 
-    // TODO: post newQuery into db
-    console.log('nq', newQuery);
+    // post newQuery into db
+    axiosBase.post('/add-query', newQuery)
+    .then(res => {
+      toast.success('query added successfully')
+      e.target.reset()
+    })
+    .catch(err => toast.error('failed to add query: ', err.message))
   }
 
   return (  
