@@ -1,29 +1,6 @@
-import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
-import Loading from "../../comps/Loading";
 import { Link } from "react-router-dom";
-import useAxios from "../../hooks/useAxios";
 
-function QueryList({layout}) {
-  const [queries, setQueries] = useState([])
-  const [loading, setLoading] = useState(true)
-  const {axiosBase} = useAxios()
-
-  useEffect(() => {
-    axiosBase('/all-queries')
-    .then(res => {
-      setQueries(res.data)
-      setLoading(false)
-    })
-    .catch(err => {
-      setLoading(false)
-      toast.error('fetching queries failed!' + err.message)
-    })
-  }, [])
-
-  if (loading) {
-    return <Loading />
-  }
+function QueryList({layout, queries}) {
   return (
     <div >
       <div className={`grid gap-8 md:gap-10 ${layout==='grid'? 'md:grid-cols-2 lg:grid-cols-3':''}`}>

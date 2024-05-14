@@ -1,11 +1,40 @@
-import { Grid, ListTask, Search } from "react-bootstrap-icons";
+import { useEffect, useState } from "react";
 import { maxContent } from "../../App";
+import useAxios from "../../hooks/useAxios";
+import Loading from "../../comps/Loading";
 import QueryList from "./QueryList";
-import { useState } from "react";
+import SearchLayout from "./SearchLayout";
 
 function Queries() {
   const [layout, setLayout] = useState('grid')
+  const [queries, setQueries] = useState([])
+  const [searchedQueries, setSearchedQueries] = useState([])
+  const [loading, setLoading] = useState(true)
+  const {axiosBase} = useAxios()
 
+  const searchQueries = (search) => {
+    const resultArr = queries.filter(query => 
+      query.productName.toLowerCase().includes(search.toLowerCase())
+    )
+    setSearchedQueries(resultArr);
+  }
+
+  useEffect(() => {
+    axiosBase('/all-queries')
+    .then(res => {
+      setQueries(res.data)
+      setSearchedQueries(res.data)
+      setLoading(false)
+    })
+    .catch(err => {
+      setLoading(false)
+      toast.error('fetching queries failed!' + err.message)
+    })
+  }, [])
+
+  if (loading) {
+    return <Loading />
+  }
   return (  
     <section className="flex-1 px-4 dark:bg-gray-800">
       <div className={`${maxContent} py-10`}>
@@ -13,20 +42,9 @@ function Queries() {
           All Queries
         </h2>
 
-        <div className="flex justify-center flex-col md:flex-row gap-4 mb-8">
-          <div className="flex bg-gray-200 rounded-md">
-            <span className="inline-block p-1.5 px-2 text-xl hover:opacity-80 self-center"> 
-              <Search/> 
-            </span>
-            <input type="text" name="search" className="bg-transparent min-w-0" placeholder="search product name" />
-          </div>
-          <div className="justify-self-end">
-            <button onClick={() => setLayout('list')} className="p-1.5 text-3xl bg-gray-200 hover:opacity-80 rounded-md mr-2" title="list view"> <ListTask/> </button>
-            <button onClick={() => setLayout('grid')} className="p-1.5 text-3xl bg-gray-200 hover:opacity-80 rounded-md" title="grid view"> <Grid/> </button>
-          </div>
-        </div>
+        <SearchLayout setLayout={setLayout} searchQueries={searchQueries} />
 
-        <QueryList layout={layout} />
+        <QueryList layout={layout} queries={searchedQueries} />
       </div>
     </section>
   );
