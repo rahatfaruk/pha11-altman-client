@@ -1,16 +1,44 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { toast } from "react-toastify";
 import { maxContent } from "../../App";
 import SectionTitle from "../../comps/SectionTitle";
+import Loading from "../../comps/Loading";
 
 function RecentQueries() {
+  const [myQueries, setMyQueries] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    axios('/data.json')
+    .then(res => {
+      setMyQueries(res.data)
+      setLoading(false)
+    })
+    .catch(err => {
+      setLoading(false)
+      toast.error('fetching queries failed!' + err.message)
+    })
+  }, [])
+
+  if (loading) {
+    return <Loading />
+  }
   return (
     <section className="px-4 dark:bg-gray-800">
       <div className={`${maxContent} py-10`}>
         <SectionTitle title={'Recent Queries'} />
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          <QueryCard />
-          <QueryCard />
-          <QueryCard />
+          {
+            myQueries.length === 0 ? 
+            (
+              <div className="text-center space-y-4 md:col-span-2 lg:col-span-3">
+                <p className="text-center text-xl text-gray-500">Query list is empty</p>
+              </div>
+            ) :
+            myQueries.map((query) => <QueryCard key={query._id} query={query} />)
+          }
         </div>
       </div>
     </section>
@@ -20,30 +48,34 @@ function RecentQueries() {
 export default RecentQueries;
 
 
-function QueryCard() {
+function QueryCard({query}) {
+  const {productName, productBrand, productImageUrl, queryTitle, alternationReason, userName, userPhotoUrl, postedTimestamp} = query
+  const formattedTime = new Date(+postedTimestamp).toLocaleString()
+
   return (
-    <div className="border rounded-md">
+    <div className="border rounded-md shadow-md">
       {/* user info, time */}
       <div className="flex items-center justify-between p-3">
         <div className="flex items-center space-x-2">
           <figure className="p-0.5 inline-block border border-cyan-600 rounded-full">
-            <img src='https://dummyimage.com/40x40/000/fff&text=a' className="size-7 rounded-full" alt='' />
+            <img src={userPhotoUrl} className="size-7 rounded-full" alt='' />
           </figure>
           <div className="-space-y-1">
-            <h2 className="text-sm font-semibold leading-none dark:text-gray-200">leroy_jenkins72</h2>
-            <span className="inline-block text-xs leading-none dark:text-gray-400">posted: 14/03/2024 - 07:03 pm</span>
+            <h2 className="text-sm font-semibold leading-none dark:text-gray-200">{userName}</h2>
+            <span className="inline-block text-xs leading-none dark:text-gray-400">posted: {formattedTime}</span>
           </div>
         </div>
       </div>
 
-      <img className="object-cover object-center w-full h-64 lg:h-80" src="https://dummyimage.com/400x300/000/fff&text=galaxy-s22u" alt="" />
+      <img className="object-cover object-bottom w-full h-64 lg:h-80" src={productImageUrl} alt="" />
 
       {/* query, product info */}
       <div className="p-4">
-        <h4 className="text-cyan-600 rounded-md mb-2">Query: what is the alternative of this?</h4>
-        <h3 className="mb-1 text-xl font-semibold text-gray-800 dark:text-white">galaxy s22 ultra</h3>
-        <p className="mb-1 text-gray-500 dark:text-gray-400">Brand: samsung</p>
-        <p className="mb-1 text-gray-500 dark:text-gray-400">Alteration reason: I am uncomfortable with android.</p>
+        <h4 className="text-cyan-600 rounded-md mb-2">Query: {queryTitle}</h4>
+        <h3 className="mb-1 text-xl font-semibold text-gray-800 dark:text-white">{productName}</h3>
+        <p className="mb-1 text-gray-500 dark:text-gray-400">Brand: {productBrand}</p>
+        <p className="mb-1 text-gray-500 dark:text-gray-400">Alteration reason: {alternationReason}</p>
+        
       </div>
     </div>
   );
