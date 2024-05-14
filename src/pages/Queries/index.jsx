@@ -1,4 +1,4 @@
-import { Grid, ListTask } from "react-bootstrap-icons";
+import { Grid, ListTask, Search } from "react-bootstrap-icons";
 import { maxContent } from "../../App";
 import QueryList from "./QueryList";
 import { useState } from "react";
@@ -13,9 +13,17 @@ function Queries() {
           All Queries
         </h2>
 
-        <div className="flex gap-2 justify-center mb-8">
-          <button onClick={() => setLayout('list')} className="p-1.5 text-3xl bg-cyan-100 hover:opacity-80 rounded-md"> <ListTask/> </button>
-          <button onClick={() => setLayout('grid')} className="p-1.5 text-3xl bg-cyan-100 hover:opacity-80 rounded-md"> <Grid/> </button>
+        <div className="flex justify-center flex-col md:flex-row gap-4 mb-8">
+          <div className="flex bg-gray-200 rounded-md">
+            <span className="inline-block p-1.5 px-2 text-xl hover:opacity-80 self-center"> 
+              <Search/> 
+            </span>
+            <input type="text" name="search" className="bg-transparent min-w-0" placeholder="search product name" />
+          </div>
+          <div className="justify-self-end">
+            <button onClick={() => setLayout('list')} className="p-1.5 text-3xl bg-gray-200 hover:opacity-80 rounded-md mr-2"> <ListTask/> </button>
+            <button onClick={() => setLayout('grid')} className="p-1.5 text-3xl bg-gray-200 hover:opacity-80 rounded-md"> <Grid/> </button>
+          </div>
         </div>
 
         <QueryList layout={layout} />
