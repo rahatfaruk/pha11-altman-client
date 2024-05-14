@@ -21,8 +21,8 @@ function Queries() {
             <input type="text" name="search" className="bg-transparent min-w-0" placeholder="search product name" />
           </div>
           <div className="justify-self-end">
-            <button onClick={() => setLayout('list')} className="p-1.5 text-3xl bg-gray-200 hover:opacity-80 rounded-md mr-2"> <ListTask/> </button>
-            <button onClick={() => setLayout('grid')} className="p-1.5 text-3xl bg-gray-200 hover:opacity-80 rounded-md"> <Grid/> </button>
+            <button onClick={() => setLayout('list')} className="p-1.5 text-3xl bg-gray-200 hover:opacity-80 rounded-md mr-2" title="list view"> <ListTask/> </button>
+            <button onClick={() => setLayout('grid')} className="p-1.5 text-3xl bg-gray-200 hover:opacity-80 rounded-md" title="grid view"> <Grid/> </button>
           </div>
         </div>
 

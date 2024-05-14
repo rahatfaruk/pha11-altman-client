@@ -3,13 +3,15 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import Loading from "../../comps/Loading";
 import { Link } from "react-router-dom";
+import useAxios from "../../hooks/useAxios";
 
 function QueryList({layout}) {
   const [queries, setQueries] = useState([])
   const [loading, setLoading] = useState(true)
+  const {axiosBase} = useAxios()
 
   useEffect(() => {
-    axios('/data.json')
+    axiosBase('/all-queries')
     .then(res => {
       setQueries(res.data)
       setLoading(false)
