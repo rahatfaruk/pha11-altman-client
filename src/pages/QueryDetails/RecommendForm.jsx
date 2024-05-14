@@ -36,7 +36,7 @@ function RecommendForm({query, incRecCount, addComment}) {
       e.target.reset()
       // inc recommend count
       incRecCount()
-      // add this comment into ui
+      // add this comment/recommendation into ui
       addComment({...newRecommendation, _id: res.data.insertedId})
     })
     .catch(err => toast.error('faile to add recommendation: ', err.message))

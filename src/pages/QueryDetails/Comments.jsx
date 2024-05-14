@@ -2,7 +2,10 @@ function Comments({comments}) {
   return (  
     <div className="mt-12 max-w-2xl mx-auto">
       <h3 className="mb-4 text-xl">Comments</h3>
-      {comments.map(comment => <Comment key={comment._id} comment={comment} />)}
+      {comments.length < 1 ? 
+        <p>No comments/recommendations available. you can suggest!</p> :
+        comments.map(comment => <Comment key={comment._id} comment={comment} />)
+      }
     </div>
   );
 }

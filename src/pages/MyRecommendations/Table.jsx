@@ -1,6 +1,10 @@
 import Swal from "sweetalert2";
+import useAxios from "../../hooks/useAxios";
 
-function Table({recommendations}) {
+function Table({recommendations, deleteRecommendation}) {
+  const {axiosBase} = useAxios()
+  // const {user} = useAuth()
+
   // delete a spot
   const handleDelete = id => {
     // show confirm dialog before delete
@@ -15,13 +19,23 @@ function Table({recommendations}) {
     }).then((result) => {
       if (result.isConfirmed) {
         // TODO: send delete request 
+        axiosBase.delete(`/delete-recommendation/${id}`)
+        .then(() => {
+          // delete confirmation msg
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success"
+          });
+          // update UI: remove this recomend from table
+          deleteRecommendation(id)
 
-        // show delete confirmation msg: after request successful
-        Swal.fire({
-          title: "Deleted!",
-          text: "Your file has been deleted.",
-          icon: "success"
-        });
+        })
+        .catch(err => {
+          alert('could not delete!')
+          console.log(err.message);
+        }) 
+
       }
     });
   }
@@ -32,7 +46,7 @@ function Table({recommendations}) {
         <thead className="text-xs md:text-base text-gray-700 uppercase bg-cyan-100 dark:bg-gray-700 dark:text-gray-400">
           <tr>
             <th scope="col" className="px-4 py-3">Product Name</th>
-            <th scope="col" className="px-4 py-3">Recommend Product Name</th>
+            <th scope="col" className="px-4 py-3">Recommend Product</th>
             <th scope="col" className="px-4 py-3">ID</th>
             <th scope="col" className="px-4 py-3">Posted Time</th>
             <th scope="col" className="px-4 py-3">Actions</th>
