@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { toast } from "react-toastify";
 import Loading from "../../comps/Loading";
 import { Link } from "react-router-dom";

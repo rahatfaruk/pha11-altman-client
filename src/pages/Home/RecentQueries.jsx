@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { toast } from "react-toastify";
 import { maxContent } from "../../App";
+import useAxios from "../../hooks/useAxios";
 import SectionTitle from "../../comps/SectionTitle";
 import Loading from "../../comps/Loading";
 
 function RecentQueries() {
   const [myQueries, setMyQueries] = useState([])
   const [loading, setLoading] = useState(true)
+  const {axiosBase} = useAxios()
 
   useEffect(() => {
-    axios('/data.json')
+    axiosBase('/all-queries')
     .then(res => {
       setMyQueries(res.data)
       setLoading(false)

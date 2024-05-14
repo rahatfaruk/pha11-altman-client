@@ -5,14 +5,19 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import Loading from "../../comps/Loading";
 import { Link } from "react-router-dom";
+import useAxios from "../../hooks/useAxios";
+import useAuth from "../../hooks/useAuth";
 
 function MyQueryList() {
   const [myQueries, setMyQueries] = useState([])
   const [loading, setLoading] = useState(true)
+  const {axiosBase} = useAxios()
+  const {user} = useAuth()
 
   useEffect(() => {
-    axios('/data.json')
+    axiosBase(`/my-queries?userEmail=${user.email}`)
     .then(res => {
+      console.log('my-queries:', res.data);
       setMyQueries(res.data)
       setLoading(false)
     })
@@ -52,7 +57,7 @@ export default MyQueryList;
 
 
 function QueryCard({query}) {
-  const {_id, productName, productBrand, productImageUrl, queryTitle, alternationReason, userName, userPhotoUrl, postedTimestamp, recommendationCount} = query
+  const {_id, productName, productBrand, productImageUrl, queryTitle, alternationReason, userName, userEmail, userPhotoUrl, postedTimestamp, recommendationCount} = query
   const formattedTime = new Date(+postedTimestamp).toLocaleString()
 
   return (
@@ -64,7 +69,7 @@ function QueryCard({query}) {
             <img src={userPhotoUrl} className="size-7 rounded-full" alt='' />
           </figure>
           <div className="-space-y-1">
-            <h2 className="text-sm font-semibold leading-none dark:text-gray-200">{userName}</h2>
+            <h2 className="text-sm font-semibold leading-none dark:text-gray-200">{userName} | {userEmail}</h2>
             <span className="inline-block text-xs leading-none dark:text-gray-400">posted: {formattedTime}</span>
           </div>
         </div>
