@@ -33,7 +33,7 @@ function Table({recommendations, deleteRecommendation}) {
         })
         .catch(err => {
           alert('could not delete!')
-          console.log(err.message);
+          console.log('delete failed! ', err.message);
         }) 
 
       }

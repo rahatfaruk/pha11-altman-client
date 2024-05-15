@@ -42,7 +42,7 @@ function MyQueryList() {
         })
         .catch(err => {
           toast.error('could not delete! ' + err.message)
-          console.log(err.message);
+          console.log('delete failed! ', err.message);
         }) 
       }
     });

@@ -11,7 +11,6 @@ function Login() {
   const navigate = useNavigate()
   const location = useLocation()
   const {axiosSecure} = useAxios()
-  console.log('login p:',user);
 
   const handleSubmit = async (e) => {
     e.preventDefault()
