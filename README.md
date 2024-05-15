@@ -9,6 +9,13 @@ FullStack website :-
 - Frontend: react, tailwind, firebase (auth). Package: swiper, axios, react-bootstrap-icons, react-toastify, sweetalert
 - Backend: expressJS, jwt security, mongodb 
 
+## Features:
+  - light/dark mode 
+  - search queries in all queries page (frontend func)
+  - list view/grid view toggler in all queries page
+  - some routes are proteced. only logged user can access (security)
+  - cookies (jwt token) are used for user varification (security) 
+
 ## Links:
   - my frontend repo: https://github.com/Porgramming-Hero-web-course/b9a11-client-side-rahatfaruk 
   - my backend repo: https://github.com/Porgramming-Hero-web-course/b9a11-server-side-rahatfaruk 
