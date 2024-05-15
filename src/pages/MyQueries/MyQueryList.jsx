@@ -48,7 +48,6 @@ function MyQueryList() {
     });
   }
 
-
   useEffect(() => {
     axiosBase(`/my-queries?userEmail=${user.email}`)
     .then(res => {

@@ -34,7 +34,7 @@ function QueryCard({query, onDeleteQuery}) {
             <Link to={`/query-details/${_id}`} className="bg-cyan-600 text-white px-2.5 py-1 rounded-md inline-block hover:opacity-85 capitalize" >View Details</Link>
           </li>
           <li>
-            <Link to={'/update-query'} className="bg-cyan-600 text-white px-2.5 py-1 rounded-md inline-block hover:opacity-85 capitalize" >Update</Link>
+            <Link to={`/update-details/${_id}`} className="bg-cyan-600 text-white px-2.5 py-1 rounded-md inline-block hover:opacity-85 capitalize" >Update</Link>
           </li>
           <li>
             <button onClick={() => onDeleteQuery(_id)} className="bg-red-800 text-white px-2.5 py-1 rounded-md inline-block hover:opacity-85 capitalize">Delete</button>
