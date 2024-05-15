@@ -11,7 +11,7 @@ function RecentQueries() {
   const {axiosBase} = useAxios()
 
   useEffect(() => {
-    axiosBase('/all-queries')
+    axiosBase('/recent-queries')
     .then(res => {
       setMyQueries(res.data)
       setLoading(false)
