@@ -12,7 +12,7 @@ import QueryCard from "./QueryCard";
 function MyQueryList() {
   const [myQueries, setMyQueries] = useState([])
   const [loading, setLoading] = useState(true)
-  const {axiosBase} = useAxios()
+  const {axiosSecure} = useAxios()
   const {user} = useAuth()
 
   // delete a spot
@@ -29,7 +29,7 @@ function MyQueryList() {
     }).then((result) => {
       if (result.isConfirmed) {
         // send delete request 
-        axiosBase.delete(`/delete-query/${id}`)
+        axiosSecure.delete(`/delete-query/${id}?email=${user.email}`)
         .then(() => {
           // delete confirmation msg
           Swal.fire({
@@ -49,7 +49,7 @@ function MyQueryList() {
   }
 
   useEffect(() => {
-    axiosBase(`/my-queries?userEmail=${user.email}`)
+    axiosSecure(`/my-queries?userEmail=${user.email}`)
     .then(res => {
       setMyQueries(res.data)
       setLoading(false)
