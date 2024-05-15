@@ -22,7 +22,7 @@ export default QueryList;
 
 
 function QueryCard({query, layout}) {
-  const {_id, productName, productBrand, productImageUrl, queryTitle, alternationReason, userName, userPhotoUrl, postedTimestamp, recommendationCount} = query
+  const {_id, productName, productBrand, productImageUrl, queryTitle, alternationReason, userName, userEmail, userPhotoUrl, postedTimestamp, recommendationCount} = query
   const formattedTime = new Date(+postedTimestamp).toLocaleString()
 
   return (
@@ -34,7 +34,7 @@ function QueryCard({query, layout}) {
             <img src={userPhotoUrl} className="size-7 rounded-full" alt='' />
           </figure>
           <div className="-space-y-1">
-            <h2 className="text-sm font-semibold leading-none dark:text-gray-200">{userName}</h2>
+            <h2 className="text-sm font-semibold leading-none dark:text-gray-200">{userName} | {userEmail}</h2>
             <span className="inline-block text-xs leading-none dark:text-gray-400">posted: {formattedTime}</span>
           </div>
         </div>

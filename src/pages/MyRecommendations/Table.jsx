@@ -7,7 +7,7 @@ function Table({recommendations, deleteRecommendation}) {
   const {user} = useAuth()
 
   // delete my recommendation
-  const handleDelete = id => {
+  const handleDelete = (recommendId, queryId) => {
     // show confirm dialog before delete
     Swal.fire({
       title: "Are you sure?",
@@ -20,7 +20,7 @@ function Table({recommendations, deleteRecommendation}) {
     }).then((result) => {
       if (result.isConfirmed) {
         // TODO: send delete request 
-        axiosSecure.delete(`/delete-recommendation/${id}?email=${user.email}`)
+        axiosSecure.delete(`/delete-recommendation?recommendId=${recommendId}&queryId=${queryId}&email=${user.email}`)
         .then(() => {
           // delete confirmation msg
           Swal.fire({
@@ -29,8 +29,7 @@ function Table({recommendations, deleteRecommendation}) {
             icon: "success"
           });
           // update UI: remove this recomend from table
-          deleteRecommendation(id)
-
+          deleteRecommendation(recommendId)
         })
         .catch(err => {
           alert('could not delete!')
@@ -61,7 +60,7 @@ function Table({recommendations, deleteRecommendation}) {
               <td className="px-4 py-4 text-sm">{rec._id}</td>
               <td className="px-4 py-4 text-sm">{new Date(+rec.postedTimestamp).toLocaleString()}</td>
               <td className="px-4 py-4 flex gap-2 md:gap-4 flex-col md:flex-row">
-                <button onClick={() => handleDelete(rec._id)} className="bg-red-700 text-white px-4 py-1 rounded-md hover:opacity-90">Delete</button>
+                <button onClick={() => handleDelete(rec._id, rec.queryId)} className="bg-red-700 text-white px-4 py-1 rounded-md hover:opacity-90">Delete</button>
               </td>
             </tr>
           ))}
