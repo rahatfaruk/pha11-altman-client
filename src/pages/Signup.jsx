@@ -4,10 +4,12 @@ import { Eye, EyeSlash } from "react-bootstrap-icons"
 import { Link, useNavigate } from "react-router-dom"
 import useAuth from "../hooks/useAuth"
 import { updateProfile } from "firebase/auth"
+import useAxios from "../hooks/useAxios"
 
 function Signup() {
   const [showPassword, setShowPassword] = useState(false)
   const {createUserWithEP} = useAuth()
+  const {axiosSecure} = useAxios()
   const navigate = useNavigate()
 
   const handleSubmit = async e => {
@@ -35,6 +37,8 @@ function Signup() {
         const credential = await createUserWithEP(email, password);
         // update name, photoUrl
         await updateProfile(credential.user, {displayName:name, photoURL:photo})
+        // set token in cookies
+        await axiosSecure.post('/jwt', {email: credential.user.email})
         toast.success('successfully created account!')
         navigate('/')
       } catch (error) {

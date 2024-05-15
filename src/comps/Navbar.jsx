@@ -6,11 +6,13 @@ import { ThemeContext } from "../context/ThemeProvider";
 import useAuth from "../hooks/useAuth";
 import { toast } from "react-toastify";
 import { Tooltip } from "react-tooltip";
+import useAxios from "../hooks/useAxios";
 
 function Navbar() {
   const [showLinks, setShowLinks] = useState(false)
   const {isDarkTheme, onClickThemeToggler} = useContext(ThemeContext)
   const {user, logout} = useAuth() 
+  const {axiosSecure} = useAxios()
   const navigate = useNavigate()
 
   const navlinkClass = ({isActive}) => {
@@ -21,6 +23,7 @@ function Navbar() {
   const handleLogout = async () => {
     try {
       await logout();
+      await axiosSecure('/clear-jwt')
       toast.info('successfully logged out!')
       navigate('/login')
     } catch (error) {

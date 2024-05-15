@@ -3,12 +3,14 @@ import { toast } from "react-toastify"
 import { Eye, EyeSlash, Google } from "react-bootstrap-icons"
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import useAuth from "../hooks/useAuth"
+import useAxios from "../hooks/useAxios"
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false)
   const {user, signInWithEP, signInWithGoogle} = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
+  const {axiosSecure} = useAxios()
   console.log('login p:',user);
 
   const handleSubmit = async (e) => {
@@ -31,7 +33,9 @@ function Login() {
     else {
       // TODO: call sign in here
       try {
-        await signInWithEP(email, password);
+        const credential = await signInWithEP(email, password);
+        // set token in cookies
+        await axiosSecure.post('/jwt', {email: credential.user.email})
         toast.success('successfully signed in!')
         navigate(location.state || '/')
       } catch (error) {

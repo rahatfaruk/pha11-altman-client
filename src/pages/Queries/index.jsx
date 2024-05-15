@@ -4,6 +4,7 @@ import useAxios from "../../hooks/useAxios";
 import Loading from "../../comps/Loading";
 import QueryList from "./QueryList";
 import SearchLayout from "./SearchLayout";
+import { toast } from "react-toastify";
 
 function Queries() {
   const [layout, setLayout] = useState('grid')
