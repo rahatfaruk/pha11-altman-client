@@ -47,7 +47,9 @@ function Login() {
   // sign with google
   const handleSignWithGoogle = async () => {
     try {
-      await signInWithGoogle();
+      const credential = await signInWithGoogle();
+      // set token in cookies
+      await axiosSecure.post('/jwt', {email: credential.user.email})
       toast.success('successfully signed in!')
       navigate('/')
     } catch (error) {

@@ -53,7 +53,9 @@ function Table({recommendations, deleteRecommendation}) {
           </tr>
         </thead>
         <tbody>
-          {recommendations.map(rec => (
+          {recommendations.length < 1 ? 
+          <p className="text-center py-8 px-2 text-xl font-semibold">No recommendations available!</p> :
+          recommendations.map(rec => (
             <tr key={rec._id} className="odd:bg-white odd:dark:bg-gray-900 even:bg-cyan-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
               <th scope="row" className="px-4 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{rec.productName}</th>
               <td className="px-4 py-4">{rec.recommendProductName}</td>
