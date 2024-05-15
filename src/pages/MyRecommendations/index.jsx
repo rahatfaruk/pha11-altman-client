@@ -9,7 +9,7 @@ import Loading from "../../comps/Loading";
 function MyRecommendations() {
   const [recommendations, setRecommendations] = useState([])
   const [loading, setLoading] = useState(true)
-  const {axiosBase} = useAxios()
+  const {axiosBase, axiosSecure} = useAxios()
   const {user} = useAuth()
 
   const deleteRecommendation = id => {
@@ -18,7 +18,7 @@ function MyRecommendations() {
 
   // get my comments/recommendations (where i am recommender)
   useEffect(() => {
-    axiosBase(`/all-recommendations?recommenderEmail=${user.email}`)
+    axiosSecure(`/all-recommendations?recommenderEmail=${user.email}`)
     .then(res => {
       setRecommendations(res.data)
       setLoading(false)

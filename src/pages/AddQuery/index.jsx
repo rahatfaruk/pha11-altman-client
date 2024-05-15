@@ -5,7 +5,7 @@ import useAxios from "../../hooks/useAxios";
 
 function AddQuery() {
   const {user} = useAuth()
-  const {axiosBase} = useAxios()
+  const {axiosSecure} = useAxios()
 
   const handleSubmit = async e => {
     e.preventDefault()
@@ -27,7 +27,7 @@ function AddQuery() {
     }
 
     // post newQuery into db
-    axiosBase.post('/add-query', newQuery)
+    axiosSecure.post(`/add-query?email=${user.email}`, newQuery)
     .then(res => {
       toast.success('query added successfully')
       e.target.reset()

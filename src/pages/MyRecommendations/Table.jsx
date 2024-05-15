@@ -1,11 +1,12 @@
 import Swal from "sweetalert2";
 import useAxios from "../../hooks/useAxios";
+import useAuth from "../../hooks/useAuth";
 
 function Table({recommendations, deleteRecommendation}) {
-  const {axiosBase} = useAxios()
-  // const {user} = useAuth()
+  const {axiosSecure} = useAxios()
+  const {user} = useAuth()
 
-  // delete a spot
+  // delete my recommendation
   const handleDelete = id => {
     // show confirm dialog before delete
     Swal.fire({
@@ -19,7 +20,7 @@ function Table({recommendations, deleteRecommendation}) {
     }).then((result) => {
       if (result.isConfirmed) {
         // TODO: send delete request 
-        axiosBase.delete(`/delete-recommendation/${id}`)
+        axiosSecure.delete(`/delete-recommendation/${id}?email=${user.email}`)
         .then(() => {
           // delete confirmation msg
           Swal.fire({

@@ -5,7 +5,7 @@ import useAxios from "../../hooks/useAxios";
 
 function RecommendForm({query, incRecCount, addComment}) {
   const {user} = useAuth()
-  const {axiosBase} = useAxios()
+  const {axiosBase, axiosSecure} = useAxios()
 
   const handleSubmit = async e => {
     e.preventDefault()
@@ -30,7 +30,7 @@ function RecommendForm({query, incRecCount, addComment}) {
     }
 
     // post new recommendation into db
-    axiosBase.post('/add-recommendation', newRecommendation)
+    axiosSecure.post(`/add-recommendation?email=${user.email}`, newRecommendation)
     .then(res => {
       toast.success('recommendation added successfully')
       e.target.reset()

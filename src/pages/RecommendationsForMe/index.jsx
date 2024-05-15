@@ -10,12 +10,12 @@ import Loading from "../../comps/Loading";
 function RecommendationsForMe() {
   const [recommendations, setRecommendations] = useState([])
   const [loading, setLoading] = useState(true)
-  const {axiosBase} = useAxios()
+  const {axiosBase, axiosSecure} = useAxios()
   const {user} = useAuth()
 
   // get recommendations for me (where others are recommender)
   useEffect(() => {
-    axiosBase(`/all-recommendations?userEmail=${user.email}`)
+    axiosSecure(`/all-recommendations?userEmail=${user.email}`)
     .then(res => {
       setRecommendations(res.data)
       setLoading(false)

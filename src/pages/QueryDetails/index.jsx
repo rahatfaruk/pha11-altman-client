@@ -26,7 +26,7 @@ function QueryDetails() {
     setComments( [newComment, ...comments] )
   }
 
-  // get this query details info
+  // get this query details info: no need verify
   useEffect(() => {
     axiosBase(`/query-details?id=${id}`)
     .then(res => {
@@ -39,7 +39,7 @@ function QueryDetails() {
     })
   }, [])
 
-  // get comments/recommendations of this query
+  // get comments/recommendations of this query: no need verify
   useEffect(() => {
     axiosBase(`/query-comments?queryId=${id}`)
     .then(res => {

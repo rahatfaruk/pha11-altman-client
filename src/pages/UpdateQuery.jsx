@@ -4,13 +4,15 @@ import { useNavigate, useParams } from "react-router-dom";
 import { maxContent } from "../App";
 import useAxios from "../hooks/useAxios";
 import Loading from "../comps/Loading";
+import useAuth from "../hooks/useAuth";
 
 function UpdateQuery() {
   const [query, setQuery] = useState({})
   const [loading, setLoading] = useState(true)
-  const {id} = useParams()
-  const { axiosBase } = useAxios()
   const navigate = useNavigate()
+  const {id} = useParams()
+  const { axiosSecure, axiosBase } = useAxios()
+  const {user} = useAuth()
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -24,7 +26,7 @@ function UpdateQuery() {
     }
 
     // send update req to server
-    axiosBase.patch(`/update-query?id=${_id}`, formData)
+    axiosSecure.patch(`/update-query?id=${_id}&email=${user.email}`, formData)
       .then(res => {
         toast.success('query updated successfully')
         navigate('/my-queries')
@@ -32,7 +34,7 @@ function UpdateQuery() {
       .catch(err => toast.error('failed to add query: ', err.message))
   }
 
-  // get query onload page
+  // get query onload page: no need to verify token
   useEffect(() => {
     axiosBase(`/query-details?id=${id}`)
     .then(res => {
