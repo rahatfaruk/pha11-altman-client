@@ -1,10 +1,16 @@
-## About Project
-This is my assignment 11 (category 9) of programming hero. Fucused on express-jwt security.
+# AltProduct
+Alternative Product Information System website. User can add a product and ask (query) others for alternative products; he can suggest others to find alternatives.  
 
-The website theme is *Alternative Product Information System*. This fullstack website is built with react, firebase (auth) for frontend; expressjs, mongodb for backend. 
+## About Project
+This is my assignment 11 (category 9) of programming hero. Focused on express-jwt security. I have designed many custom components in this project. I have kept these design as simple and user friendly as possible. CRUD operation implemented.
+-- Rahat Faruk
+
+FullStack website :-
+- Frontend: react, tailwind, firebase (auth). Package: swiper, axios, react-bootstrap-icons, react-toastify, sweetalert
+- Backend: expressJS, jwt security, mongodb 
 
 ## Links:
   - my frontend repo: https://github.com/Porgramming-Hero-web-course/b9a11-client-side-rahatfaruk 
   - my backend repo: https://github.com/Porgramming-Hero-web-course/b9a11-server-side-rahatfaruk 
-  - my live link: 
+  - my live link: https://pha11-altproduct.web.app 
   - requirement repo: https://github.com/ProgrammingHero1/B9-CRUD-and-JWT-battlefield  
