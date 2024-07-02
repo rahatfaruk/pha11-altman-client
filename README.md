@@ -21,3 +21,9 @@ FullStack website :-
   - my backend repo: [pha11-altman-server](https://github.com/rahatfaruk/pha11-altman-server) , [phero-server-repo](https://github.com/Porgramming-Hero-web-course/b9a11-server-side-rahatfaruk) 
   - my live link: https://pha11-altproduct.web.app 
   - requirement repo: https://github.com/ProgrammingHero1/B9-CRUD-and-JWT-battlefield  
+
+## How can you run frontend locally:
+  - clone this repo
+  - create `.env.local` file inside root folder. Here, keys are: firebase config info (create a firebase project if needed) - ` VITE_apiKey, VITE_authDomain, VITE_projectId, VITE_storageBucket, VITE_messagingSenderId, VITE_appId `
+  - update server link into a local link (if needed)
+  - start frontend server `npm run dev`
