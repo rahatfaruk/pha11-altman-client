@@ -6,7 +6,7 @@ function RouteGuard({children}) {
   const location = useLocation()
 
   if (!user) {
-    return <Navigate to={'/login'} state={location.pathname} />
+    return <Navigate to={'/login'} state={location.pathname} replace />
   }
   return <>{children}</>
 }

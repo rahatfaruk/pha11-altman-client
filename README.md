@@ -1,5 +1,5 @@
 # AltProduct
-Alternative Product Information System website. User can add a product and ask (query) others for alternative products; he can suggest others to find alternatives.  
+Alternative Product Information System website. User can add a product and ask (query) others for alternative products; user can create account and suggest others to find alternative products. User can manage his suggested products, add product, remove product, update product. 
 
 ## About Project
 This is my assignment 11 (category 9) of programming hero. Focused on express-jwt security. I have designed many custom components in this project. I have kept these design as simple and user friendly as possible. CRUD operation implemented.
@@ -17,7 +17,7 @@ FullStack website :-
   - cookies (jwt token) are used for user varification (security) 
 
 ## Links:
-  - my frontend repo: https://github.com/Porgramming-Hero-web-course/b9a11-client-side-rahatfaruk 
-  - my backend repo: https://github.com/Porgramming-Hero-web-course/b9a11-server-side-rahatfaruk 
+  - my frontend repo: [pha11-altman-client](https://github.com/rahatfaruk/pha11-altman-client) , [phero-private-repo](https://github.com/Porgramming-Hero-web-course/b9a11-client-side-rahatfaruk) 
+  - my backend repo: [pha11-altman-server](https://github.com/rahatfaruk/pha11-altman-server) , [phero-server-repo](https://github.com/Porgramming-Hero-web-course/b9a11-server-side-rahatfaruk) 
   - my live link: https://pha11-altproduct.web.app 
   - requirement repo: https://github.com/ProgrammingHero1/B9-CRUD-and-JWT-battlefield  
